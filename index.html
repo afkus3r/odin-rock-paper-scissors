@@ -28,13 +28,13 @@
             computerSelection = computerPlay();
             console.log("The computer chose " + computerSelection);
 
-            if ((computerSelection === "Rock" && playerSelection === "Rock") || (computerSelection === "Paper" && playerSelection === "Paper") || (computerSelection === "Scissors" && playerSelection === "Scissors")) {
+            if ((computerSelection === "Rock" && playerSelection.toLowerCase() === "rock") || (computerSelection === "Paper" && playerSelection.toLowerCase() === "paper") || (computerSelection === "Scissors" && playerSelection.toLowerCase() === "scissors")) {
                 console.log("It's a draw !");
             }
-            else if ((computerSelection === "Rock" && playerSelection === "Scissors") || (computerSelection === "Paper" && playerSelection === "Rock") || (computerSelection === "Scissors" && playerSelection === "Paper")) {
+            else if ((computerSelection === "Rock" && playerSelection.toLowerCase() === "scissors") || (computerSelection === "Paper" && playerSelection.toLowerCase() === "rock") || (computerSelection === "Scissors" && playerSelection.toLowerCase() === "paper")) {
                 console.log("You loose !");
             }
-            else if ((computerSelection === "Rock" && playerSelection === "Paper") || (computerSelection === "Paper" && playerSelection === "Scissors") || (computerSelection === "Scissors" && playerSelection === "Rock")) {
+            else if ((computerSelection === "Rock" && playerSelection.toLowerCase() === "paper") || (computerSelection === "Paper" && playerSelection.toLowerCase() === "scissors") || (computerSelection === "Scissors" && playerSelection.toLowerCase() === "rock")) {
                 console.log("You win !");
             }
             else {
