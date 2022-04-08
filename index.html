@@ -30,19 +30,40 @@
 
             if ((computerSelection === "Rock" && playerSelection.toLowerCase() === "rock") || (computerSelection === "Paper" && playerSelection.toLowerCase() === "paper") || (computerSelection === "Scissors" && playerSelection.toLowerCase() === "scissors")) {
                 console.log("It's a draw !");
+                return false;
             }
             else if ((computerSelection === "Rock" && playerSelection.toLowerCase() === "scissors") || (computerSelection === "Paper" && playerSelection.toLowerCase() === "rock") || (computerSelection === "Scissors" && playerSelection.toLowerCase() === "paper")) {
                 console.log("You loose ! " + computerSelection + " beats " + playerSelection.toLowerCase() + " !");
+                return false;
             }
             else if ((computerSelection === "Rock" && playerSelection.toLowerCase() === "paper") || (computerSelection === "Paper" && playerSelection.toLowerCase() === "scissors") || (computerSelection === "Scissors" && playerSelection.toLowerCase() === "rock")) {
                 console.log("You win ! " + playerSelection.toLowerCase() + " beats " + computerSelection + " !");
+                return true;
             }
             else {
                 console.log("Something went wrong, please refresh the page.")
+                return false;
             }
         }
 
-        singleRound();
+        function game() {
+            let score = 0;
+
+            for (let round = 0; round < 5; round++) {
+                if (singleRound() === true) {
+                    score++;
+                }
+            }
+
+            if (score >= 3) {
+                console.log("Congrats ! You're the winner with a score of " + score + " !");
+            }
+            else {
+                console.log("You loose the game with a score of " + score + " !")
+            }
+        }
+
+        game();
 
     </script>
 </body>
