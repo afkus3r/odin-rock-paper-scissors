@@ -32,10 +32,10 @@
                 console.log("It's a draw !");
             }
             else if ((computerSelection === "Rock" && playerSelection.toLowerCase() === "scissors") || (computerSelection === "Paper" && playerSelection.toLowerCase() === "rock") || (computerSelection === "Scissors" && playerSelection.toLowerCase() === "paper")) {
-                console.log("You loose !");
+                console.log("You loose ! " + computerSelection + " beats " + playerSelection.toLowerCase() + " !");
             }
             else if ((computerSelection === "Rock" && playerSelection.toLowerCase() === "paper") || (computerSelection === "Paper" && playerSelection.toLowerCase() === "scissors") || (computerSelection === "Scissors" && playerSelection.toLowerCase() === "rock")) {
-                console.log("You win !");
+                console.log("You win ! " + playerSelection.toLowerCase() + " beats " + computerSelection + " !");
             }
             else {
                 console.log("Something went wrong, please refresh the page.")
