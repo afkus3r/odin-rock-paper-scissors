@@ -7,14 +7,25 @@
     <title>Rock Paper Scissors</title>
 </head>
 <body>
+    <input type="button" value="Rock">
+    <input type="button" value="Paper">
+    <input type="button" value="Scissors">
+    <div class="computer"></div>
+    <div class="result"></div>
     <script>
-        function computerPlay() {
-            let randomInt = Math.floor(Math.random() * 10);
+        const computer = document.querySelector(".computer");
+        const result = document.querySelector(".result");
+        let score = 0;
+        let computerScore = 0;
+        let round = 0;
+
+        function computerPlay () {
+            let randomInt = Math.floor(Math.random() * 3);
             let play;
-            if (randomInt <= 3) {
+            if (randomInt == 0) {
                 play = "Rock";
             }
-            else if (randomInt <= 6) {
+            else if (randomInt == 1) {
                 play = "Paper";
             }
             else {
@@ -24,52 +35,59 @@
         }
 
         function singleRound(playerSelection, computerSelection) {
-            playerSelection = prompt("Rock, Paper or Scissors ?");
-            computerSelection = computerPlay();
-            console.log("The computer chose " + computerSelection);
+            computer.textContent = "The computer chose " + computerSelection;
 
-            if ((computerSelection === "Rock" && playerSelection.toLowerCase() === "rock") ||
-                (computerSelection === "Paper" && playerSelection.toLowerCase() === "paper") ||
-                (computerSelection === "Scissors" && playerSelection.toLowerCase() === "scissors")) {
-                console.log("It's a draw !");
-                return false;
+            if ((computerSelection === "Rock" && playerSelection === "Rock") ||
+                (computerSelection === "Paper" && playerSelection === "Paper") ||
+                (computerSelection === "Scissors" && playerSelection === "Scissors")) {
+                result.textContent = "It's a draw !";
             }
-            else if ((computerSelection === "Rock" && playerSelection.toLowerCase() === "scissors") ||
-                (computerSelection === "Paper" && playerSelection.toLowerCase() === "rock") ||
-                (computerSelection === "Scissors" && playerSelection.toLowerCase() === "paper")) {
-                console.log("You loose ! " + computerSelection + " beats " + playerSelection.toLowerCase() + " !");
-                return false;
+            else if ((computerSelection === "Rock" && playerSelection === "Scissors") ||
+                (computerSelection === "Paper" && playerSelection === "Rock") ||
+                (computerSelection === "Scissors" && playerSelection === "Paper")) {
+                result.textContent = "You loose ! " + computerSelection + " beats " + playerSelection + " !";
+                computerScore++;
             }
-            else if ((computerSelection === "Rock" && playerSelection.toLowerCase() === "paper") ||
-                (computerSelection === "Paper" && playerSelection.toLowerCase() === "scissors") ||
-                (computerSelection === "Scissors" && playerSelection.toLowerCase() === "rock")) {
-                console.log("You win ! " + playerSelection.toLowerCase() + " beats " + computerSelection + " !");
-                return true;
+            else if ((computerSelection === "Rock" && playerSelection === "Paper") ||
+                (computerSelection === "Paper" && playerSelection === "Scissors") ||
+                (computerSelection === "Scissors" && playerSelection === "Rock")) {
+                result.textContent = "You win ! " + playerSelection + " beats " + computerSelection + " !";
+                score++;
             }
             else {
-                console.log("Something went wrong, please refresh the page.")
-                return false;
+                result.textContent = "Something went wrong, please refresh the page.";
+            }
+            round++;
+
+            if (round === 6 && score >= 3) {
+                result.textContent = "You win the game with a score of " + score + " !";
+                round = 0;
+                score = 0;
+                computerScore = 0;
+            } else if (round === 6 && computerScore >= 3) {
+                result.textContent = "Computer win the game with a score of " + computerScore + " !";
+                round = 0;
+                score = 0;
+                computerScore = 0;
+            } else if (round === 6) {
+                result.textContent = "Nobody wins the game, try again !";
+                round = 0;
+                score = 0;
+                computerScore = 0;
             }
         }
 
-        function game() {
-            let score = 0;
+        function gameStart () {
+            const buttons = document.querySelectorAll('input');
 
-            for (let i = 0; i < 5; i++) {
-                if (singleRound() === true) {
-                    score++;
-                }
-            }
-
-            if (score >= 3) {
-                console.log("Congrats ! You're the winner with a score of " + score + " !");
-            }
-            else {
-                console.log("You loose the game with a score of " + score + " !")
-            }
+            buttons.forEach((button) => {
+                button.addEventListener('click', () => {
+                    singleRound(button.value, computerPlay());
+                });
+            });
         }
-
-        game();
+        
+        gameStart();
 
     </script>
 </body>
