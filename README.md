@@ -4,7 +4,7 @@ A simple website made to play a five-round game of Rock Paper Scissors against t
 
 ## Goal
 
-The main goal was to discover basic JavaScript and practice problem-solving skills.
+The main goal was to discover basic JavaScript and practice problem-solving skills. See complete assignment [here](https://www.theodinproject.com/lessons/foundations-rock-paper-scissors).
 
 ## Built with
 
